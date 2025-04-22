@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Update Daily Meditation</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fdf6f0;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+    h1 {
+      color: #a67c52;
+    }
+    form {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 100%;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    select, button {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+    }
+    button {
+      background-color: #a67c52;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #8c6b45;
+    }
+  </style>
+</head>
+<body>
+  <h1>Update Daily Meditation</h1>
+  <form id="meditationForm">
+    <label for="name">ชื่อ - ชื่อเล่น</label>
+    <select id="name" name="name" required>
+      <option value="">เลือกชื่อ</option>
+      <option>บัญญัติ (แดง)</option>
+      <option>รัชเศรษฐ์ (ยศ)</option>
+      <option>ชนุดม (ดอน)</option>
+      <option>ทรงชัย (ทรง)</option>
+      <option>สุรเชษฐ์ (ตั้ม)</option>
+      <option>สุรุ่งรัตน์ (เก่ง)</option>
+      <option>อติพร (โอ)</option>
+      <option>เกสณี (เก๋)</option>
+      <option>สมภพ (เอก)</option>
+      <option>ฐิตภรณ์ (เบลล์)</option>
+      <option>อุมาพร (นก)</option>
+      <option>ณัฐพล (ท็อด)</option>
+      <option>กิตติพงษ์ (พี)</option>
+      <option>ธนพร (พร)</option>
+      <option>รายาวดี (เฟริน)</option>
+      <option>บัญญัติ (บอย)</option>
+      <option>ธีรพล (ต้อม)</option>
+      <option>นริศ (เอ็กซ์)</option>
+      <option>กิตติ (ตี๋)</option>
+      <option>จารุวรรณ (จุ๋ม)</option>
+      <option>ณัฏฐา (เมย์)</option>
+      <option>วรินทร (ต่อ)</option>
+      <option>กิตติศักดิ์ (ใหม่)</option>
+      <option>ราชัย (ชัย)</option>
+      <option>รัญชนา (จีน่า)</option>
+      <option>อรวรา (ผักแพว)</option>
+      <option>เกียรติศักดิ์ (โน๊ต)</option>
+      <option>วรรณชัย (ดิว)</option>
+      <option>ธนกฤษ (พิว)</option>
+    </select>
+
+    <label for="week">ช่วงสัปดาห์</label>
+    <select id="week" name="week" required>
+      <option value="">เลือกวัน</option>
+      <option>จันทร์</option>
+      <option>อังคาร</option>
+      <option>พุธ</option>
+      <option>พฤหัส</option>
+      <option>ศุกร์</option>
+      <option>เสาร์</option>
+      <option>อาทิตย์</option>
+    </select>
+
+    <label for="session">ช่วงเวลา การทำสมาธิ</label>
+    <select id="session" name="session" required>
+      <option value="">เลือกช่วงเวลา</option>
+      <option>ครั้งที่ 1 / ตื่นนอน-เช้า</option>
+      <option>ครั้งที่ 2 / ระหว่างวัน</option>
+      <option>ครั้งที่ 3 / ก่อนนอน-ค่ำ</option>
+    </select>
+
+    <button type="submit">ส่งข้อมูล</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('meditationForm');
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      fetch('https://script.google.com/macros/s/AKfycbzGvX6BW_buLPpZyQK8d5Nr0O_5ZbSr7JxP8oW4gLtmd-XwkQuRINCS6ke8oK9xKRsI_g/exec', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.text())
+      .then(result => {
+        alert('ส่งข้อมูลเรียบร้อยแล้ว');
+        form.reset();
+      })
+      .catch(error => {
+        alert('เกิดข้อผิดพลาดในการส่งข้อมูล');
+        console.error('Error:', error);
+      });
+    });
+  </script>
+</body>
+</html>
